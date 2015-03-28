@@ -15,5 +15,20 @@
         <p:menuitem value="Search" outcome="search"/>
     </p:menubar>
 
+    <h:form>
+        <h:panelGrid columns="2" >
+            <h:outputLabel value="First Name : "/>
+            <h:inputText value="#{nReaderController.nReader.fName}"/>
+            <h:outputLabel value="Last Name : "/>
+            <h:inputText value="#{nReaderController.nReader.lName}"/>
+            <h:outputLabel value="Email : "/>
+            <h:inputText value="#{nReaderController.nReader.email}"/>
+            <h:outputLabel value="ID : "/>
+            <h:inputText value="#{nReaderController.nReader.id}"/>
+        </h:panelGrid>
+        <h:commandButton value="Add New Reader"
+                         action="#{nReaderController.addNewReader}"/>
+    </h:form>
+
 </h:body>
 </html>
