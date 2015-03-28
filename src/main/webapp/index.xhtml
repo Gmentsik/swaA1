@@ -1,0 +1,20 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>News Aggregator - Home</title>
+</h:head>
+
+<h:body>
+
+    <p:menubar>
+        <p:menuitem value="Home" outcome="index" />
+        <p:menuitem value="Account" outcome="account" />
+        <p:menuitem value="Search" outcome="search"/>
+    </p:menubar>
+
+    <h2><h:outputText id="output" value="#{hibernateTest.testH()}" /></h2>
+</h:body>
+</html>
