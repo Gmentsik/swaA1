@@ -1,7 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
     <title>News Aggregator - Search</title>
@@ -9,26 +10,8 @@
 
 <h:body>
 
-    <p:menubar>
-        <p:menuitem value="Home" outcome="index" />
-        <p:menuitem value="Account" outcome="account" />
-        <p:menuitem value="Search" outcome="search"/>
-    </p:menubar>
-
-    <h:form>
-        <h:panelGrid columns="2" >
-            <h:outputLabel value="First Name : "/>
-            <h:inputText value="#{nReaderController.nReader.fName}"/>
-            <h:outputLabel value="Last Name : "/>
-            <h:inputText value="#{nReaderController.nReader.lName}"/>
-            <h:outputLabel value="Email : "/>
-            <h:inputText value="#{nReaderController.nReader.email}"/>
-            <h:outputLabel value="ID : "/>
-            <h:inputText value="#{nReaderController.nReader.id}"/>
-        </h:panelGrid>
-        <h:commandButton value="Add New Reader"
-                         action="#{nReaderController.addNewReader}"/>
-    </h:form>
+    <ui:include src="menu.xhtml" />
+    <h:outputText value="#{newsController.init()}" escape="false"></h:outputText>
 
 </h:body>
 </html>

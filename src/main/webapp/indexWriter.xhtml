@@ -1,0 +1,46 @@
+<ui:composition
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:ui="http://java.sun.com/jsf/facelets">
+        <div class="ui-grid-col-9">
+                <h:panelGroup rendered="#{userController.loggedIn() and userController.isNewsWriter()}">
+                        <p>Welcome, #{userController.currentUser.usrName}</p>
+
+                        <h:form id="editor" style="margin:10px">
+                                Title:
+                                <p:inputText value="#{newsController.title}" label="News Title" required="true" style="display: block;margin:5px"/>
+
+                                News Text:
+                                <p:editor id="editor" widgetVar="editorWidget" value="#{newsController.content}" width="800" />
+
+                                <h:panelGrid columns="2" style="margin-top: 10px">
+                                        <p:commandButton value="Submit" action="#{newsController.addNews(userController.getCurrentUserID())}" icon="ui-icon-disk" >
+                                        </p:commandButton>
+                                        <p:commandButton value="Clear" type="button" onclick="PF('editorWidget').clear();" icon="ui-icon-close" />
+                                </h:panelGrid>
+
+                                <b>Topics: </b>
+                                <p:selectManyCheckbox id="grid" value="#{newsController.assignedTopics}" layout="grid" columns="3">
+                                        <f:selectItems value="#{topic.getTopics()}" var="topic" itemLabel="#{topic.title}" itemValue="#{topic.title}" />
+                                </p:selectManyCheckbox>
+
+                        </h:form>
+
+                        <h:form>
+                                <p:growl id="addTopic"/>
+                                <p:inputText value="#{newsController.newTopicTitle}" style="display:block"/>
+                                <p:commandLink id="ajax" update=":editor:grid, addTopic" actionListener="#{newsController.addNewTopic()}">
+                                        <h:outputText value=" + Add Topic" />
+                                </p:commandLink>
+                        </h:form>
+                </h:panelGroup>
+        </div>
+        <div class="ui-grid-col-3">
+                <h:panelGroup rendered="#{userController.loggedIn() and userController.isNewsWriter()}">
+                        <ui:include src="userFeed.xhtml"/>
+                </h:panelGroup>
+        </div>
+
+
+</ui:composition>

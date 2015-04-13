@@ -1,21 +1,53 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
     <title>News Aggregator - Home</title>
 </h:head>
 
 <h:body>
+    #{newsController.init()}
+    <ui:include src="menu.xhtml" />
 
-    <p:menubar>
-        <p:menuitem value="Home" outcome="index" />
-        <p:menuitem value="Account" outcome="account" />
-        <p:menuitem value="Search" outcome="search"/>
-        <p:menuitem value="Init" outcome="init"/>
+    <div class="ui-grid-responsive" style="margin-top: 50px">
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-1">
+                <h:form>
+                    <p:menu style="width:90%">
+                        <p:menuitem value="Home" url="http://www.primefaces.org" icon="ui-icon-home" />
+                        <p:menuitem value="Docs" url="http://www.primefaces.org/documentation" icon="ui-icon-document" />
+                        <p:menuitem value="Download" url="http://www.primefaces.org/downloads" icon="ui-icon-arrowthick-1-s" />
 
-    </p:menubar>
+                    </p:menu>
+                </h:form>
+            </div>
+
+            <div class="ui-grid-col-10" style="padding-left: 20px;">
+                <h:panelGroup rendered="#{not userController.loggedIn()}">
+                    <p>Welcome, Guest!</p>
+                    <p>Please Login or <a href="register.xhtml">Register a New Account</a> </p>
+
+                    <h:form>
+                        <p:panelGrid columns="2" cellpadding="5">
+                            <p:outputLabel for="username" value="Username:" />
+                            <p:inputText id="username" value="#{userController.usrName}"/>
+
+                            <p:outputLabel for="pw"  value="Password: " />
+                            <p:inputText id="pw" value="#{userController.pWord}"/>
+                        </p:panelGrid>
+                        <p:commandButton value="Login" action="#{userController.login()}" ajax="false"/>
+                    </h:form>
+                </h:panelGroup>
+
+                <ui:include src="indexReader.xhtml" />
+                <ui:include src="indexWriter.xhtml" />
+
+            </div>
+        </div>
+    </div>
 
 </h:body>
 </html>

@@ -1,0 +1,53 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <title>News Aggregator - Home</title>
+</h:head>
+
+<h:body>
+
+    <ui:include src="menu.xhtml" />
+
+    <p:dataTable value="#{userController.userList}" var="reader"  border="1">
+        <f:facet name="header">
+            News Readers
+        </f:facet>
+        <p:column>
+           <f:facet name="header">
+               <h:outputText value="ID"/>
+           </f:facet>
+            <h:outputText value="#{reader.id}"/>
+        </p:column>
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="Username"/>
+            </f:facet>
+            <h:outputText value="#{reader.usrName}"/>
+        </p:column>
+        session.
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="PWord"/>
+            </f:facet>
+            <h:outputText value="#{reader.pWord}"/>
+        </p:column>
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="Type"/>
+            </f:facet>
+            <h:outputText value="#{userController.getUserType(reader)}"/>
+        </p:column>
+    </p:dataTable>
+    <h:form>
+        <h:link outcome="init.xhtml" value="Add new News Reader"/>
+    </h:form>
+
+
+</h:body>
+</html>
+
+
